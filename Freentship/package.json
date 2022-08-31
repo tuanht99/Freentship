@@ -9,7 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+
     "@expo/webpack-config": "^0.17.2",
+
+    "@expo/webpack-config": "^0.16.19",
+
     "@react-native-picker/picker": "2.4.2",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.12",

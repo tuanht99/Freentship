@@ -102,7 +102,6 @@ export default function BooksListApp({ navigation }) {
   ];
 
   const PROFICLE = [{
-    key: 1,
     name: 'Nguyễn Văn 10',
     phone: '0966.533.699',
     image: Avatar,
@@ -226,12 +225,12 @@ export default function BooksListApp({ navigation }) {
   return (
     <SafeAreaView style={AppStyle.InforUserTheme.container}>
       <StatusBar backgroundColor='#EEEEEE' />
-      <View>
+      
         <FlatList
           ListHeaderComponent={headerComponent}
           ListFooterComponent={footerComponent}
         />
-      </View>
+     
     </SafeAreaView>
   );
 }
