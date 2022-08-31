@@ -1,4 +1,4 @@
-import { StyleSheet,  flex, } from 'react-native'
+import { StyleSheet} from 'react-native'
 
 
 
@@ -32,7 +32,7 @@ const Styles_Nottifys = StyleSheet.create({
     },
     viewhead: {
       flex: 1,
-      display: flex,
+
       flexDirection: 'row',
       height: '100%',
       width: '100%',
@@ -41,14 +41,13 @@ const Styles_Nottifys = StyleSheet.create({
     },
     viewScroll: {
       flex: 10,
-      display: flex,
-  
+
       height: '100%',
       width: '100%',
     },
     viewNagivator: {
       flex: 0.5,
-      display: flex,
+
   
       height: '100%',
       width: '100%',
