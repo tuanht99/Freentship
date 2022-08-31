@@ -16,12 +16,11 @@ const Styles_Nottifys = StyleSheet.create({
       width: "100%",
     },
     image: {
-     paddingTop: 30,
+     marginTop: 10,
     },
     Menu: {
-      paddingTop: 50,
-      paddingBottom: 50,
-      paddingLeft: 75,
+     paddingTop: 30,
+     paddingLeft: 50,
     },
     touch: {
       height: 80,

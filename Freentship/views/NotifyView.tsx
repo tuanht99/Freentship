@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Button,  flex, } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Button, } from 'react-native'
 import React from 'react'
 
 import AppStyle from '../themes/NotifyTheme'
-
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function NotifyView() {
@@ -12,7 +12,7 @@ export default function NotifyView() {
       <View style={AppStyle.viewhead} >
         <Image style={AppStyle.image} source={require('../assets/logo.jpg')}></Image>
         <TouchableOpacity style={AppStyle.Menu}>
-          <Image style={AppStyle.image} source={require('../assets/Menu.png')}></Image>
+        <Ionicons  name="menu-outline" size={50} color="black" /> 
         </TouchableOpacity>
       </View>
 
@@ -79,11 +79,7 @@ export default function NotifyView() {
         </ScrollView>
       </View>
 
-      <View style={AppStyle.viewNagivator}>
-        {/* chứa gắn navigation của home */}
-        <Button
-          title="Press button"></Button>
-      </View>
+      
     </View>
   );
 }
