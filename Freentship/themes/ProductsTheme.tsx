@@ -1,10 +1,26 @@
 import { StyleSheet } from "react-native";
+import Colors from './colors';
 
 export default StyleSheet.create({
-    container: { height: 304, backgroundColor: '#fefefe', marginVertical: 12, paddingHorizontal: 14, paddingBottom: 14 },
-    products1: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 },
-    products2: { fontSize: 16, textTransform: 'uppercase', fontWeight: 'bold' },
-    products3: { width: 133, flex: 1, justifyContent: 'center', alignItems: 'center' },
-    products4: { fontSize: 18, fontWeight: 'bold', color: "#E94730", textAlign: 'center' },
-
+    tryNewShopProductList: {
+    marginBottom: 14,
+  },
+  product_showAll: {
+    width: 133,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: Colors.menuGrey,
+    marginStart: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  showAll_title: {
+    color: Colors.mainColor,
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  showAll_icon: {
+    fontSize: 24,
+    color: Colors.mainColor,
+  },
 });

@@ -1,171 +1,142 @@
 import {
+  SafeAreaView,
+  ImageBackground,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
   Text,
   View,
-  ScrollView,
-  ImageBackground,
-  Image,
-} from "react-native";
-import { MaterialIcons, Ionicons } from "react-native-vector-icons";
-import TextImage from "../components/TextImage";
-import Products from "../components/Products";
-import { DataHome } from "../core/data";
-import HomeTheme from "../themes/HomeTheme";
+} from 'react-native';
+import React, { useState } from 'react';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import styles from '../themes/HomeTheme';
+import IconText from '../components/IconText';
+import ImageText from '../components/ImageText';
+import Category1 from '../components/Category1';
+import {
+  DataCategory,
+  DataCategory1,
+  DataCategory2,
+  DataCategory3,
+  DataTryNewShop,
+} from '../core/data';
+import Category2 from '../components/Category2';
 
-const txtCategory1 = 'thử quán mới';
-const txtCategory2 = 'đang khuyến mãi';
-const txtCategory3 = 'thương hiệu quen thuộc';
-const txtFood1 = 'Giao đồ ăn';
-const txtFood2 = 'Gọi xe';
-const txtFood3 = 'Đi chợ';
-const txtFood4 = 'Giao hàng';
-const txtFood5 = 'Siêu thị LoX';
-const txtFood6 = 'Mua mỹ phẩm';
-const txtFood7 = 'Giặt ủi';
-const txtFood8 = 'Mua thuốc';
-const txtFood9 = 'Shopping';
-const txtFood10 = 'Chăm thú cưng';
-const txtFood11 = 'Giao hoa';
+export interface ProductModel {
+  sourceImage: string;
+  title: string;
+  distance: number;
+  discount: number;
+}
 
-export default function HomeView({ navigation }) {
+export interface CategoryIconText {
+  nameIcon: string;
+  title: string;
+}
+
+const HomeView = () => {
+  const txtCategory = ['thử quán mới', 'đang khuyến mãi', 'thương hiệu quen thuộc'];
+  const [isScroll, setIsCroll] = useState<boolean>(false);
+  const [urlImage, setUrlImage] = useState<string>(
+    'https://loship.vn/dist/images/home-banner-18062021.jpg'
+  );
+  const [urlAvarta, setUrlAvarta] = useState<string>(
+    'https://anhdepfree.com/wp-content/uploads/2020/06/icon-facebook.png'
+  );
+  const [avartaTitle, setAvartaTitle] = useState<string>('Chào buổi tối, Khanh');
+  const [dataCategory, setDataCategory] = useState<CategoryIconText[]>(DataCategory);
+  const [dataCategory1, setDataCategory1] = useState<CategoryIconText[]>(DataCategory1);
+  const [dataCategory2, setDataCategory2] = useState<CategoryIconText[]>(DataCategory2);
+  const [dataCategory3, setDataCategory3] = useState<CategoryIconText[]>(DataCategory3);
+  const [dataTryNewShop, setDataTryNewShop] = useState<ProductModel[]>(DataTryNewShop);
+
+  if (dataCategory3.length < 4) {
+    for (let i = 0; i < 5 - dataCategory3.length; i++) {
+      dataCategory3.push({ nameIcon: '', title: '' });
+    }
+  }
+
+  function handleSroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const scrollY = event.nativeEvent.contentOffset.y;
+    if (scrollY >= 125) {
+      setIsCroll(true);
+    } else {
+      setIsCroll(false);
+    }
+    console.log(event.nativeEvent.contentOffset.y);
+  }
+
   return (
-    <ScrollView contentContainerStyle={HomeTheme.container}>
-      <View style={{ height: 130 }}>
-        <ImageBackground
-          source={require("../assets/backgroundHome.png")}
-          style={{ height: 130 }}
-        >
-          <View
-            style={HomeTheme.home1}
-          >
-            <View
-              style={HomeTheme.home2}
-            >
-              <Ionicons
-                name="location"
-                size={24}
-                color="#E94730"
-                style={{ marginEnd: 4 }}
-              />
-              <Text style={{ marginTop: 4, color: "#eee" }}>
-                53 đường võ văn ngân, linh chiểu, thủ đức, t...
-              </Text>
-              <MaterialIcons name="navigate-next" size={30} color="#FEFEFE" />
-            </View>
+    <SafeAreaView style={styles.container}>
+      {isScroll && (
+        <View style={styles.logoFixed}>
+          <Text style={styles.logoTextFixed}>test</Text>
+        </View>
+      )}
+      <ScrollView onScroll={handleSroll}>
+        <ImageBackground source={{ uri: urlImage }} style={styles.image}>
+          <View style={styles.location}>
+            <IconText
+              iconColor={styles.iconStyle.color}
+              sizeIcon={styles.iconStyle.size}
+              direction="row"
+              title="53 đường võ văn ngân, linh chiểu, thủ đức, t..."
+              nameIcon="location-sharp"
+              styleText={styles.title}
+            />
+            <Ionicon
+              name="chevron-forward"
+              size={styles.iconStyle.size}
+              color={styles.iconStyle.color}
+            />
           </View>
         </ImageBackground>
-      </View>
-      <View
-        style={HomeTheme.home3}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: 18,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              backgroundColor: "#fefefe",
-              paddingVertical: 5,
-              paddingLeft: 3,
-              paddingRight: 43,
-              borderRadius: 30,
-            }}
-          >
-            <Image
-              source={require("../assets/avatar.jpg")}
-              style={{
-                height: 40,
-                width: 40,
-                borderRadius: 25,
-                borderWidth: 1,
-                borderColor: "#ccc",
-              }}
-            />
-            <Text
-              style={{
-                fontSize: 22,
-                fontWeight: "bold",
-                marginTop: 6,
-                marginStart: 8,
-              }}
-            >
-              Chào buổi tối, Khanh
-            </Text>
-          </View>
+        <View style={styles.logo}>
+          <Text style={styles.logoText}>test</Text>
         </View>
-        <View style={{ marginTop: 20 }}>
-          <View style={{ flexDirection: "row" }}>
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood1}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood2}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood3}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood4}
-            />
-          </View>
-          <View style={{ flexDirection: "row", marginTop: 12 }}>
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood5}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood6}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood7}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood8}
-            />
-          </View>
-          <View style={{ flexDirection: "row", marginTop: 12 }}>
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood9}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood10}
-            />
-            <TextImage
-              navigation={navigation}
-              nameImage="food.png"
-              text={txtFood11}
-            />
-            <TextImage navigation={navigation} nameImage="" text="" />
-          </View>
+        <View style={styles.category}>
+          <ImageText
+            sourceImage={urlAvarta}
+            title={avartaTitle}
+            styleImage={styles.imageAvarta}
+            styleContainer={styles.avartaContainer}
+            styleText={styles.avartaText}
+          />
+          <Category1
+            iconColor={styles.categoryIcon.color}
+            sizeIcon={styles.categoryIcon.size}
+            styleText={styles.categoryText}
+            styleContainer={styles.categoryList}
+            data={dataCategory}
+          />
+          <Category1
+            iconColor={styles.categoryIcon.color}
+            sizeIcon={styles.categoryIcon.size}
+            styleText={styles.categoryText}
+            styleContainer={styles.categoryList}
+            data={dataCategory1}
+          />
+          <Category1
+            iconColor={styles.categoryIcon.color}
+            sizeIcon={styles.categoryIcon.size}
+            styleText={styles.categoryText}
+            styleContainer={styles.categoryList}
+            data={dataCategory2}
+          />
+          <Category1
+            iconColor={styles.categoryIcon.color}
+            sizeIcon={styles.categoryIcon.size}
+            styleText={styles.categoryText}
+            styleContainer={styles.categoryList}
+            data={dataCategory3}
+          />
         </View>
-      </View>
-      <View style={{ marginBottom: 24 }}>
-        <Products title={txtCategory1} data={DataHome.data1} />
-        <Products title={txtCategory2} data={DataHome.data2} />
-        <Products title={txtCategory3} data={DataHome.data3} />
-      </View>
-    </ScrollView>
+        <Category2 data={dataTryNewShop} title={txtCategory[0]} />
+        <Category2 data={dataTryNewShop} title={txtCategory[1]} />
+        <Category2 data={dataTryNewShop} title={txtCategory[2]} />
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
+
+export default HomeView;

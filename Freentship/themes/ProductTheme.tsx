@@ -1,7 +1,50 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import Colors from './colors';
+
+const baseStyle = StyleSheet.create({
+  product: {
+    width: 133,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: Colors.menuGrey,
+    marginStart: 14,
+  },
+});
 
 export default StyleSheet.create({
-    product1: { flexDirection: 'row', alignItems: 'center' },
-    product2: { height: 20, width: 20, marginRight: 4 },
-    product3: { flexDirection: 'row', justifyContent: 'center', backgroundColor: '#d9d9d9', paddingVertical: 4, marginHorizontal: 12, marginVertical: 4 },
+  product: {
+    ...baseStyle.product,
+  },
+  product_image: {
+    height: 140,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  product_title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    padding: 8,
+  },
+  product_advertisement: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+  },
+  advertisement_icon: {
+    color: Colors.darkColor,
+    fontSize: 24,
+  },
+  advertisement_image: {
+    width: 24,
+    height: 24,
+    borderRadius: 5,
+    marginEnd: 4,
+  },
+  advertisement_title: {
+    marginStart: 4,
+  },
+  advertisement_discount: {
+    paddingBottom: 14,
+    paddingTop: 8,
+    paddingHorizontal: 8,
+  },
 });

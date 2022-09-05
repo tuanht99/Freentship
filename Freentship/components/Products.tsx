@@ -1,36 +1,37 @@
-import { View, Text, Pressable, ScrollView, Image } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import Product from './Product';
-import ProductsTheme from '../themes/ProductsTheme';
+import styles from '../themes/ProductsTheme';
+import { ProductModel } from '../views/HomeView';
+import { FC } from 'react';
 
-function Products(props) {
-  const styles = {
-    data1: { borderWidth: 1, borderColor: '#d9d9d9', borderRadius: 8, marginStart: 14 },
-    data2: { height: 140, width: 133, borderTopLeftRadius: 8, borderTopRightRadius: 8 },
-    data3: { fontSize: 18, fontWeight: 'bold', marginTop: 8 },
-  };
-  return (
-    <View style={ProductsTheme.container} >
-      <View style={ProductsTheme.products1}>
-        <Text style={ProductsTheme.products2} >
-          {props.title}
-        </Text>
-        <Pressable style={{ flexDirection: 'row' }} onPress={() => console.log('Xem tat ca: ', props.title)}>
-          <Text style={{ color: '#00A3FF', fontSize: 14 }}>Xem tất cả</Text>
-        </Pressable>
-      </View>
-      <ScrollView horizontal={true} contentContainerStyle={{ marginTop: 25, marginStart: -14 }}>
-        {props.data.map((item, index) => (
-          <Product key={index} nameImage={item.nameImage} text={item.text} numberAddress={item.numberAddress} discount={item.discount} style={styles} />
-        ))}
-        <View style={styles.data1}>
-          <View style={ProductsTheme.products3}>
-            <Text style={ProductsTheme.products4}>xem tất cả Thử quán mới tại LOSHIP</Text>
-            <Image source={require('../assets/next.png')} style={{ height: 20, width: 20 }} />
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+interface Props {
+  data: ProductModel[];
 }
+
+const Products: FC<Props> = ({ data }) => {
+  const txtShowAll = 'Xem tất cả Thử quán mới tại LOSHIP';
+  return (
+    <ScrollView horizontal={true} contentContainerStyle={styles.tryNewShopProductList}>
+      {data.map((item, index) => (
+        <Product
+          key={index}
+          sourceImage={item.sourceImage}
+          title={item.title}
+          distance={item.distance}
+          discount={item.discount}
+        />
+      ))}
+      <View style={styles.product_showAll}>
+        <Text style={styles.showAll_title}>{txtShowAll}</Text>
+        <Ionicon
+          name="arrow-forward"
+          size={styles.showAll_icon.fontSize}
+          color={styles.showAll_icon.color}
+        />
+      </View>
+    </ScrollView>
+  );
+};
 
 export default Products;
