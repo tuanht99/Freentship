@@ -22,6 +22,7 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
+    "react-native-calendars": "^1.1288.2",
     "react-native-country-picker-modal": "^2.0.0",
     "react-native-gesture-handler": "~2.5.0",
     "react-native-paper": "^4.12.4",

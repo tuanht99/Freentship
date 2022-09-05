@@ -3,11 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 
 // import LoginNavigator from './navigators/LoginNavigator';
 // import InforSettingView from './views/InforSettingView';
-import NotifyView from './views/NotifyView';
+// import NotifyView from './views/NotifyView';
+import ChangeProfileView from './views/ChangeProfileView';
+
 
 
 export default function App() {
   return (
-    < NotifyView />
+    < ChangeProfileView />
   );
 }

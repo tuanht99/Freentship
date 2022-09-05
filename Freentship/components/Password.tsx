@@ -32,11 +32,11 @@ export default function Password({ navigation }) {
   const [password, setPassword] = useState('');
 
   return (
-    <View style={styles.container}>
+    <View >
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.inputField}
-          name='password'
+          
           placeholder='Enter password'
           autoCapitalize='none'
           autoCorrect={false}
@@ -55,13 +55,7 @@ export default function Password({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5EEDC',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 12
-  },
+ 
   inputContainer: {
     backgroundColor: 'white',
     width: '100%',

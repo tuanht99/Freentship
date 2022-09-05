@@ -100,14 +100,14 @@ export default function InforSettingView() {
       {/* change password */}
       <View style={AppStyle.ChangePassword}>
         <View style={{ flexDirection: 'row' }} >
-          <Image style={AppStyle.Image} source={require('../assets/padlock.png')}></Image>
-
+         
+          <Ionicons style={{  paddingTop: 5, }} name="lock-closed-outline" size={35} color="black" />
           <Text style={AppStyle.profileText}>
-            đổi mật khẩu
+            Đổi mật khẩu
           </Text>
           <TouchableOpacity style={AppStyle.touchableOpacityChangePassword}>
            
-          <Ionicons style={{ position: 'absolute', paddingTop: 15, left: 150}} name="arrow-forward-outline" size={35} color="black" />
+          <Ionicons style={{ position: 'absolute', paddingTop: 5, left: 175}} name="arrow-forward-outline" size={35} color="black" />
           
           </TouchableOpacity>
         </View>

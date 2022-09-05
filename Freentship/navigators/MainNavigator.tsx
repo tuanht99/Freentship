@@ -13,7 +13,7 @@ export default function MainNavigator() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Mai;" component={HomeView} />
+        <Stack.Screen name="Main" component={HomeView} />
         <Stack.Screen name="Food" component={FoodView} />
       </Stack.Navigator>
     </NavigationContainer>
