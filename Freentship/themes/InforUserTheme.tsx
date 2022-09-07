@@ -46,7 +46,7 @@ const StyleInforUser = StyleSheet.create({
     marginTop: 8,
   },
   horizonline: {
-    backgroundColor: '#DDDDDD', height: 5
+    backgroundColor: '#DDDDDD', height: 5, 
   },
   bold: { fontWeight: 'bold', fontSize: 14 },
   textSize17: { fontSize: 16 },
