@@ -17,8 +17,8 @@ export default StyleSheet.create({
   },
   product_image: {
     height: 140,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
   },
   product_title: {
     fontSize: 18,

@@ -1,5 +1,4 @@
 import {
-  SafeAreaView,
   ImageBackground,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -7,22 +6,20 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import styles from '../themes/HomeTheme';
 import IconText from '../components/IconText';
 import ImageText from '../components/ImageText';
 import Category1 from '../components/Category1';
-import {
-  DataCategory,
-  DataCategory1,
-  DataCategory2,
-  DataCategory3,
-  DataTryNewShop,
-} from '../core/data';
+import { DataCategory, DataCategory1, DataCategory2, DataCategory3 } from '../core/data';
 import Category2 from '../components/Category2';
+import { db } from '../core/config';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import * as Device from 'expo-device';
 
 export interface ProductModel {
+  id: string;
   sourceImage: string;
   title: string;
   distance: number;
@@ -35,6 +32,33 @@ export interface CategoryIconText {
 }
 
 const HomeView = () => {
+  const isWeb = Device.brand === null;
+  const [data, setData] = useState<ProductModel[]>([]);
+  useEffect(() => {
+    let unsubscribe: any;
+    const fetchData = async () => {
+      // unsubscribe = onSnapshot(collection(db, 'items'), (querySnapshot) => {
+      //   setData(
+      //     querySnapshot.docs.map((doc) => ({
+      //       id: doc.id,
+      //       ...doc.data(),
+      //     })) as ProductModel[]
+      //   );
+      // });
+      unsubscribe = await getDocs(collection(db, 'items')).then((querySnapshot) => {
+        setData(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })) as ProductModel[]
+        );
+      });
+    };
+
+    fetchData();
+    return unsubscribe;
+  }, []);
+
   const txtCategory = ['thử quán mới', 'đang khuyến mãi', 'thương hiệu quen thuộc'];
   const [isScroll, setIsCroll] = useState<boolean>(false);
   const [urlImage, setUrlImage] = useState<string>(
@@ -48,7 +72,6 @@ const HomeView = () => {
   const [dataCategory1, setDataCategory1] = useState<CategoryIconText[]>(DataCategory1);
   const [dataCategory2, setDataCategory2] = useState<CategoryIconText[]>(DataCategory2);
   const [dataCategory3, setDataCategory3] = useState<CategoryIconText[]>(DataCategory3);
-  const [dataTryNewShop, setDataTryNewShop] = useState<ProductModel[]>(DataTryNewShop);
 
   if (dataCategory3.length < 4) {
     for (let i = 0; i < 5 - dataCategory3.length; i++) {
@@ -67,13 +90,13 @@ const HomeView = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={isWeb ? styles.containerWeb : styles.container}>
       {isScroll && (
-        <View style={styles.logoFixed}>
+        <View style={isWeb ? styles.logoFixedWeb : styles.logoFixed}>
           <Text style={styles.logoTextFixed}>test</Text>
         </View>
       )}
-      <ScrollView onScroll={handleSroll}>
+      <ScrollView scrollEventThrottle={16} onScroll={handleSroll}>
         <ImageBackground source={{ uri: urlImage }} style={styles.image}>
           <View style={styles.location}>
             <IconText
@@ -131,11 +154,11 @@ const HomeView = () => {
             data={dataCategory3}
           />
         </View>
-        <Category2 data={dataTryNewShop} title={txtCategory[0]} />
-        <Category2 data={dataTryNewShop} title={txtCategory[1]} />
-        <Category2 data={dataTryNewShop} title={txtCategory[2]} />
+        <Category2 data={data} title={txtCategory[0]} />
+        <Category2 data={data} title={txtCategory[1]} />
+        <Category2 data={data} title={txtCategory[2]} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -7,10 +7,10 @@ import { FC } from 'react';
 
 interface Props {
   data: ProductModel[];
+  txtShowAll: string;
 }
 
-const Products: FC<Props> = ({ data }) => {
-  const txtShowAll = 'Xem tất cả Thử quán mới tại LOSHIP';
+const Products: FC<Props> = ({ data, txtShowAll }) => {
   return (
     <ScrollView horizontal={true} contentContainerStyle={styles.tryNewShopProductList}>
       {data.map((item, index) => (

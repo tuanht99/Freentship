@@ -70,33 +70,35 @@ export const DataTryNewShop = [
     discount: 25,
   },
   {
-    sourceImage: 'https://yt.cdnxbvn.com/medias/uploads/209/209193-com-ut-diem.jpg',
-    title: 'Cơm út',
-    distance: 17.2,
-    discount: 25,
+    sourceImage:
+      'https://cdn.tgdd.vn/2021/12/CookDish/cach-lam-bun-dau-mam-tom-ngon-ngat-ngay-an-mot-lan-la-ghien-avt-1200x675.jpg',
+    title: 'Bún đậu mắm tôm mẹt',
+    distance: 10.2,
+    discount: 20,
   },
   {
     sourceImage: 'https://yt.cdnxbvn.com/medias/uploads/209/209193-com-ut-diem.jpg',
     title: 'Cơm út',
-    distance: 17.2,
-    discount: 25,
+    distance: 1.2,
+    discount: 2,
+  },
+  {
+    sourceImage:
+      'https://cdn.tgdd.vn/2021/01/CookProduct/MIQUANGSUONNONVATOMCachNauMiQuangChinhGocMienTrungThomNgonBepCuiTV14-14screenshot1200-1200x676.jpg',
+    title: 'Mì quảng sườn non',
+    distance: 7.2,
+    discount: 35,
   },
   {
     sourceImage: 'https://yt.cdnxbvn.com/medias/uploads/209/209193-com-ut-diem.jpg',
     title: 'Cơm út',
-    distance: 17.2,
-    discount: 25,
+    distance: 17,
+    discount: 5,
   },
   {
     sourceImage: 'https://yt.cdnxbvn.com/medias/uploads/209/209193-com-ut-diem.jpg',
     title: 'Cơm út',
-    distance: 17.2,
+    distance: 1,
     discount: 25,
   },
-  {
-    sourceImage: 'https://yt.cdnxbvn.com/medias/uploads/209/209193-com-ut-diem.jpg',
-    title: 'Cơm út',
-    distance: 17.2,
-    discount: 25,
-  },
-]
+];

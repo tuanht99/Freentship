@@ -1,10 +1,28 @@
 import { StyleSheet } from 'react-native';
 import Colors from './colors';
 
-export default StyleSheet.create({
+const baseStyle = {
   container: {
     flex: 1,
     backgroundColor: Colors.lightGrey,
+  },
+  logoFixed: {
+    zIndex: 1,
+    backgroundColor: Colors.greyColor,
+    borderBottomWidth: 0.2,
+    borderColor: Colors.menuGrey,
+    width: '100%',
+    padding: 15,
+  },
+};
+
+export default StyleSheet.create({
+  container: {
+    ...baseStyle.container,
+    paddingTop: 45,
+  },
+  containerWeb: {
+    ...baseStyle.container,
   },
   image: {
     position: 'absolute',
@@ -45,15 +63,16 @@ export default StyleSheet.create({
     marginTop: 123,
   },
   logoFixed: {
+    ...baseStyle.logoFixed,
     position: 'absolute',
-    zIndex: 1,
-    top: 45,
-    backgroundColor: Colors.greyColor,
-    borderBottomWidth: 0.2,
-    borderColor: Colors.menuGrey,
-    width: '100%',
     alignSelf: 'center',
-    padding: 15,
+    top: 45,
+  },
+  logoFixedWeb: {
+    ...baseStyle.logoFixed,
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 0,
   },
   logoText: {
     color: Colors.textColor,
