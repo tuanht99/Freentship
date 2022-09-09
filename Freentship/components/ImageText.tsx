@@ -1,5 +1,6 @@
 import { View, Text, Image } from 'react-native';
 import React, { FC } from 'react';
+import styles from '../themes/ImageTextTheme';
 
 interface Props {
   styleContainer?: object;
@@ -7,9 +8,10 @@ interface Props {
   styleText?: object;
   sourceImage: string;
   title: string;
+  numberOfLines?: number;
 }
 
-const ImageText: FC<Props> = ({ styleContainer, styleImage, styleText, sourceImage, title }) => {
+const ImageText: FC<Props> = ({ numberOfLines, styleContainer, styleImage, styleText, sourceImage, title }) => {
   return (
     <View style={styleContainer}>
       <Image
@@ -18,7 +20,7 @@ const ImageText: FC<Props> = ({ styleContainer, styleImage, styleText, sourceIma
           uri: sourceImage,
         }}
       />
-      <Text style={styleText}>{title}</Text>
+      <Text numberOfLines={numberOfLines} style={[styleText, styles.title]}>{title}</Text>
     </View>
   );
 };

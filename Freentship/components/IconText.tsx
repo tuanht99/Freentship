@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import styles from '../themes/IconTextTheme';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
   direction?: 'row' | 'column';
   title: string;
   nameIcon: string;
+  numberOfLines?: number;
 }
 
 const IconText: FC<Props> = ({
@@ -21,18 +22,12 @@ const IconText: FC<Props> = ({
   direction = 'column',
   title,
   nameIcon,
+  numberOfLines = 1,
 }) => {
-  const [classContainer, setClassContainer] = useState<object>(styles[direction].container);
-  useEffect(() => {
-    if (styleContainer) {
-      setClassContainer({ ...classContainer, ...styleContainer });
-    }
-  }, [styleContainer]);
-
   return (
-    <View style={classContainer}>
+    <View style={[styleContainer, styles[direction].container]}>
       <Ionicon name={nameIcon} size={sizeIcon} color={iconColor} />
-      <Text style={styleText}>{title}</Text>
+      <Text numberOfLines={numberOfLines} style={[styleText, { flex: 1 }]}>{title}</Text>
     </View>
   );
 };

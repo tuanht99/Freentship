@@ -19,6 +19,7 @@ const Product: FC<Props> = ({ sourceImage, title, distance, discount }) => {
         styleText={styles.product_title}
         sourceImage={sourceImage}
         title={title}
+        numberOfLines={2}
       />
       <View style={styles.product_advertisement}>
         <Image source={require('../assets/qc.png')} style={styles.advertisement_image} />

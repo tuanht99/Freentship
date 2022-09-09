@@ -4,7 +4,6 @@ import { ProductModel } from '../views/HomeView';
 import Products from './Products';
 import styles from '../themes/Category2Theme';
 import LoadingProducts from './LoadingProducts';
-import Ionicon from 'react-native-vector-icons/Ionicons';
 
 interface Props {
   data: ProductModel[];
@@ -36,14 +35,6 @@ const Category2: FC<Props> = ({ data, title }) => {
           <LoadingProducts />
           <LoadingProducts />
           <LoadingProducts />
-          <View style={styles.product_showAll}>
-            <Text style={styles.showAll_title}>{txtShowAll}</Text>
-            <Ionicon
-              name="arrow-forward"
-              size={styles.showAll_icon.fontSize}
-              color={styles.showAll_icon.color}
-            />
-          </View>
         </ScrollView>
       </View>
     );

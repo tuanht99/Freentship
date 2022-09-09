@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform, StatusBar } from 'react-native';
 import Colors from './colors';
 
 const baseStyle = {
@@ -19,10 +19,7 @@ const baseStyle = {
 export default StyleSheet.create({
   container: {
     ...baseStyle.container,
-    paddingTop: 45,
-  },
-  containerWeb: {
-    ...baseStyle.container,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   image: {
     position: 'absolute',
@@ -41,7 +38,6 @@ export default StyleSheet.create({
   },
   location: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
     backgroundColor: Colors.darkColor,
@@ -66,13 +62,7 @@ export default StyleSheet.create({
     ...baseStyle.logoFixed,
     position: 'absolute',
     alignSelf: 'center',
-    top: 45,
-  },
-  logoFixedWeb: {
-    ...baseStyle.logoFixed,
-    position: 'absolute',
-    alignSelf: 'center',
-    top: 0,
+    top: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   logoText: {
     color: Colors.textColor,

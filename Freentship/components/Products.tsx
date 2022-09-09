@@ -12,7 +12,7 @@ interface Props {
 
 const Products: FC<Props> = ({ data, txtShowAll }) => {
   return (
-    <ScrollView horizontal={true} contentContainerStyle={styles.tryNewShopProductList}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tryNewShopProductList}>
       {data.map((item, index) => (
         <Product
           key={index}

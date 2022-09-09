@@ -5,6 +5,7 @@ import {
   ScrollView,
   Text,
   View,
+  SafeAreaView,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -16,7 +17,6 @@ import { DataCategory, DataCategory1, DataCategory2, DataCategory3 } from '../co
 import Category2 from '../components/Category2';
 import { db } from '../core/config';
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
-import * as Device from 'expo-device';
 
 export interface ProductModel {
   id: string;
@@ -32,7 +32,6 @@ export interface CategoryIconText {
 }
 
 const HomeView = () => {
-  const isWeb = Device.brand === null;
   const [data, setData] = useState<ProductModel[]>([]);
   useEffect(() => {
     let unsubscribe: any;
@@ -59,19 +58,20 @@ const HomeView = () => {
     return unsubscribe;
   }, []);
 
+  const [txtAddress] = useState('53 Đ. Võ Văn Ngân, Linh Chiểu, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh');
   const txtCategory = ['thử quán mới', 'đang khuyến mãi', 'thương hiệu quen thuộc'];
   const [isScroll, setIsCroll] = useState<boolean>(false);
-  const [urlImage, setUrlImage] = useState<string>(
+  const [urlImage] = useState<string>(
     'https://loship.vn/dist/images/home-banner-18062021.jpg'
   );
-  const [urlAvarta, setUrlAvarta] = useState<string>(
+  const [urlAvarta] = useState<string>(
     'https://anhdepfree.com/wp-content/uploads/2020/06/icon-facebook.png'
   );
-  const [avartaTitle, setAvartaTitle] = useState<string>('Chào buổi tối, Khanh');
-  const [dataCategory, setDataCategory] = useState<CategoryIconText[]>(DataCategory);
-  const [dataCategory1, setDataCategory1] = useState<CategoryIconText[]>(DataCategory1);
-  const [dataCategory2, setDataCategory2] = useState<CategoryIconText[]>(DataCategory2);
-  const [dataCategory3, setDataCategory3] = useState<CategoryIconText[]>(DataCategory3);
+  const [avartaTitle] = useState<string>('Chào buổi tối, Khanh');
+  const [dataCategory] = useState<CategoryIconText[]>(DataCategory);
+  const [dataCategory1] = useState<CategoryIconText[]>(DataCategory1);
+  const [dataCategory2] = useState<CategoryIconText[]>(DataCategory2);
+  const [dataCategory3] = useState<CategoryIconText[]>(DataCategory3);
 
   if (dataCategory3.length < 4) {
     for (let i = 0; i < 5 - dataCategory3.length; i++) {
@@ -90,20 +90,20 @@ const HomeView = () => {
   }
 
   return (
-    <View style={isWeb ? styles.containerWeb : styles.container}>
+    <SafeAreaView style={styles.container}>
       {isScroll && (
-        <View style={isWeb ? styles.logoFixedWeb : styles.logoFixed}>
+        <View style={styles.logoFixed}>
           <Text style={styles.logoTextFixed}>test</Text>
         </View>
       )}
-      <ScrollView scrollEventThrottle={16} onScroll={handleSroll}>
+      <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleSroll}>
         <ImageBackground source={{ uri: urlImage }} style={styles.image}>
           <View style={styles.location}>
             <IconText
               iconColor={styles.iconStyle.color}
               sizeIcon={styles.iconStyle.size}
               direction="row"
-              title="53 đường võ văn ngân, linh chiểu, thủ đức, t..."
+              title={txtAddress}
               nameIcon="location-sharp"
               styleText={styles.title}
             />
@@ -158,7 +158,7 @@ const HomeView = () => {
         <Category2 data={data} title={txtCategory[1]} />
         <Category2 data={data} title={txtCategory[2]} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
